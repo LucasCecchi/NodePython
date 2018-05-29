@@ -20,7 +20,7 @@ To use this repo as a sandbox for learning Node.js download [Node.js](https://no
 $ git clone https://github.com/robert-vogel/NodePython.git
 ```
 
-and move into the packages directory.  You will need to install the applications dependencies using npm.  This is simply done by,
+and move into the package's directory.  You will need to install the applications dependencies using npm.  This is simply done by,
 
 ```
 $ npm install
@@ -32,4 +32,4 @@ which installs all the dependencies in the `package.json` file.  Now you are rea
 $ npx nodemon app.js
 ```
 
-This command should then print some text, followed by `Server running on port 3000`.  To check out the webpage, open your favorite browser and type `localhost:3000`.
+This command should then print some text to the terminal, followed by `Server running on port 3000`.  To check out the webpage, open your favorite browser and type `localhost:3000` into the address bar.
