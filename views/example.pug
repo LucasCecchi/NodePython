@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  div(class='main')
+    div(class='welcome')
+      h1 <em> You spawned a python process! </em>
+      p(class='lead') The numpy random number generator produced
+      ul
+      - var values = data;
+      ul
+        each val in values
+          li= val

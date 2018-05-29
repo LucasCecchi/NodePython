@@ -1,0 +1,110 @@
+
+.welcome {
+  padding:2.5em;
+  padding-right:4em;
+  padding-left:4em;
+  background:WhiteSmoke;
+}
+
+.welcome>p {
+  font-size:1em;
+}
+
+.section{
+  padding-top:3em;
+}
+
+.section>div {
+  margin:0;
+  padding:2em;
+  padding-left:4em;
+  padding-right:4em;
+}
+
+.section>div.even {
+  background-color:WhiteSmoke;
+}
+
+ul.highlight {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+
+.highlight>li{
+  border-left:0.25em solid transparent;
+}
+
+.highlight>li:hover{
+  /* padding-top:0.25em; */
+  border-left:0.25em solid #064579;
+}
+
+.highlight>li>p {
+  padding-left:0.5em;
+  margin-top:0.1em;
+}
+
+.highlight>li a {
+  color: #3d70b2;
+  text-decoration: none;
+  display: block;
+  padding-left:0.5em;
+}
+
+.left {
+  width:45%;
+  padding:0;
+  margin:2.5%;
+  float:left;
+}
+
+.right {
+  float:left;
+  width:45%;
+  padding:0;
+  margin:2.5%;
+}
+
+/* ====================================== */
+/* ====================================== */
+/* img */
+/* ====================================== */
+/* ====================================== */
+
+img {
+  width:7.55em;
+  border-radius:100%;
+}
+
+div.author {
+  width:30%;
+  border-bottom:0.25em solid transparent;
+  float:left;
+}
+
+div.author>p>a {
+  color: #3d70b2;
+  text-decoration: none;
+}
+
+div.author:hover {
+  border-bottom:0.25em solid #064579;
+}
+
+div.main{
+  margin-top:3em;
+}
+
+/* ====================================== */
+/* ====================================== */
+/* footer */
+/* ====================================== */
+/* ====================================== */
+
+footer {
+  padding:2.5em;
+  background-color: #3d70b2;
+  color:white;
+  font-size:1.15em;
+}
