@@ -1,0 +1,49 @@
+doctype html
+html
+  //- ============================================
+  //- ============================================
+  //- header
+  //- ============================================
+  //- ============================================
+  head
+    title Py Examplejs
+    meta(charset='utf-8')
+    //- =======================================
+    //- Use Font Awesome fonts!
+    //- =======================================
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+    script(src="/js/jquery-3.3.1.min.js")
+    script(src="/js/submit_parameters.js")
+    script(src="/js/components.js")
+    
+    //- =======================================
+    //- Custom Stylesheets
+    //- =======================================    
+    link(rel='stylesheet' type='text/css' href='/stylesheets/global.css')
+    link(rel='stylesheet' type='text/css'
+          href='/stylesheets/resourceFramework.css')
+    link(rel='stylesheet' type='text/css' href='/stylesheets/components.css')
+    link(rel='stylesheet' type='text/css' href='/stylesheets/simulationExample.css')
+    
+    block customHead
+
+  body
+    //- ============================================
+    //- ============================================
+    //- Nav bar
+    //- ============================================
+    //- ============================================
+    nav(class='navbar')
+      a(class='brand' href='/') <em> Py Examplejs </em>
+      a(href='/python') Python
+      a(href='/inputPars') Input Parameters
+    
+    //- ============================================
+    //- ============================================
+    //- Page specific content
+    //- ============================================
+    //- ============================================
+    block content
+
+
+  

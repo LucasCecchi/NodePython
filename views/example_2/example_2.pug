@@ -1,0 +1,75 @@
+extends layout
+
+block content
+  main
+    //- ====================================
+    //- ====================================
+    //- Make the side navigation bar for changing parameter values
+    //- ====================================
+    //- ====================================
+    div(class='column sidenav')
+        h3(align='center')= 'Submit Parameters'
+        hr
+        div(class='pars')
+          //- Instantiate a form
+          form(class='pars' method='POST' action='' id='sim_pars')
+            h4(align='left') Parameters to select include
+            //- iterate over the inputSettings for mean, std, and number of samples
+            each val, wkey in inputSettings
+              div(class='parSection' align='center')
+                label(for=wkey) #{ val.label }
+                br
+                span= String(val.min) + ' '
+                input(id=wkey name=wkey type='range' 
+                  min=val.min max=val.max
+                  step=val.step
+                  onchange="$".concat("('#", wkey, "_value').html(this.value)")
+                  value=pars[wkey]
+                  form='sim_pars')
+                span= ' ' + String(val.max)
+                br
+                span(id=wkey+'_value' text-align='center') #{ pars[wkey] }
+                br
+          hr
+          div(align='center' id='buttons')
+            button(id='submitForm' class='rnd-btn blue') Simulate
+    div(class='mainText')
+      //- ====================================
+      //- ====================================
+      //- Introduction to simulations
+      //- ====================================
+      //- ====================================    
+      div(id='intro' class='section')
+        //- Introdution header and buttons
+        h3 User Guide <span>
+          <button class='section-btn' id='btnResults' onclick="toggleSection(id, '#introDetails')">
+            <span id='overview-arrow' class='arrow_down'></span>
+          </button>
+        </span>
+        hr
+        div(id='introDetails')
+          p Submit a mean, standard deviation, and the number of samples to drawn from a Gaussian distribution.
+      //- ====================================
+      //- loader icon
+      //- ====================================        
+      div(id='loader' align='center')
+      //- ====================================
+      //- ====================================
+      //- Results section
+      //- ====================================
+      //- ====================================    
+      div(id='results' class='section' style='visibility:hidden')
+        h3 Results <span>
+          <button class='section-btn' id='btnIntro' onclick="toggleSection(id, '#samples')">
+            <span id='overview-arrow' class='arrow_down'></span>
+          </button>
+        </span>
+          hr
+          //- ====================================
+          //- performance bar plot
+          //- ====================================
+          div(id='samples' class='subSection')
+            h4 Generated samples
+            hr(style='height:0.05em;opacity:0.5')
+            div(id='generatedSamples')
+        

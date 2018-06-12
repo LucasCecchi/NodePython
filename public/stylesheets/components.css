@@ -1,0 +1,202 @@
+/* ====================================== */
+/* ====================================== */
+/* submission buttons */
+/* ====================================== */
+/* ====================================== */
+
+.rnd-radio {
+  border-color: #3d70b2;
+  border-style: solid;
+  padding-top:0.15em;
+  padding-bottom:0.15em;
+  padding-left:0.35em;
+  padding-right:0.35em;
+  font-size: 1em;
+  text-align: center;
+  text-decoration: none;
+  color:#3d70b2;
+  display: inline-block;
+  -webkit-transition-duration: 0.25s; /* Safari */
+  transition-duration: 0.25s;
+  background-color:white;
+}
+
+.left-radio{
+  border-width:0.1em 0 0.1em 0.1em;
+  border-radius: 0.2em 0 0 0.2em;
+}
+
+.right-radio{
+  border-radius: 0 0.2em 0.2em 0;
+  border-width: 0.1em 0.1em 0.1em 0;
+}
+
+input[type='radio']:not(:checked)+label:hover {
+  background-color: #3d70b2;
+  color: white;
+}
+
+
+input[type='radio']:checked+label {
+  background-color:#3d70b2;
+  border: 0.1em solid #3d70b2;
+  color: white;
+}
+
+
+.rnd-btn {
+  border: none;
+  border-radius:0.25em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.blue {
+    font-size: 1em;
+    color: white;
+    padding:0.5em;
+    background-color: #3d70b2;
+}
+
+.blue:hover {
+    background-color: #064579;
+    color: white;
+}
+
+/* ====================================== */
+/* ====================================== */
+/*  Loader*/
+/* ====================================== */
+/* ====================================== */
+
+.loader {
+  border: 0.5em solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 0.5em solid #3498db;
+  width: 4em;
+  height: 4em;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* ====================================== */
+/* ====================================== */
+/*  Arrow buttons */
+/* ====================================== */
+/* ====================================== */
+
+.section-btn {
+  display: inline-block;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
+  padding-left: 0.65em;
+  padding-right:0.65em;
+  border:solid #3d70b2;
+  border-radius:5%;
+  border-width: 0.15em;
+  align: center;
+  text-decoration: none;
+  background-color:white;
+  float:right;
+}
+
+.section-btn:hover {
+  color: white;
+  background-color: #3d70b2;
+}
+.section-btn:hover > .arrow_down{
+  border:solid white;
+  border-width: 0 0.15em 0.15em 0;
+}
+
+.section-btn:hover > .arrow_right{
+  border:solid white;
+  border-width: 0 0.15em 0.15em 0;
+}
+
+.arrow_down {
+  border:solid #3d70b2;
+  border-width: 0 0.15em 0.15em 0;
+  display:inline-block;
+  height:0.875em;
+  width:0.875em;
+  transform: rotate(45deg);
+}
+
+.arrow_right {
+  border:solid #3d70b2;
+  border-width: 0 0.15em 0.15em 0;
+  display:inline-block;
+  height:0.875em;
+  width:0.875em;
+  transform: rotate(-45deg);
+}
+
+.fileNameTextBox {
+  border: 0.05em solid gray;
+  padding-top:0.5em;
+  padding-bottom:0.5em;
+  border-radius:0.25em;
+  margin:1em 0 0 0;
+  background-color:white;
+}
+
+.fileNameTextBox>p {
+  padding-left:0.5em;
+  text-align:left;
+  /* padding-top:0.2em; */
+  /* padding-bottom:0.2em; */
+  height:1.75em;
+  overflow-x:auto;
+  margin:0;
+  color:#D3D3D3
+}
+
+p.textActive {
+  color:#000000
+}
+
+
+/* ============================================ */
+/* ============================================ */
+/*  table header */
+/* ============================================ */
+/* ============================================ */
+
+tr.header th{
+  border-bottom: 0.05em solid gray;
+  background-color:#3d70b2;
+  color: white;
+}
+
+tr.entry th {
+  font-weight: normal;
+}
+
+tr.small th {
+  font-size:1em;
+}
+
+tr.odd th {
+  background-color:WhiteSmoke;
+}
+
+th.left {
+  text-align:left;
+}

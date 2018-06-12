@@ -9,7 +9,9 @@ Dependencies
 1. [Node.js (8.11.2)](https://nodejs.org/en/)
 2. [Express (^4.16.3)](https://expressjs.com/)
 3. [PUG (^2.0.3)](https://pugjs.org/api/getting-started.html)
-4. [Nodemon (^1.17.5)](https://www.npmjs.com/package/nodemon)
+4. [Body Parser (^1.18.3)](https://www.npmjs.com/package/body-parser)
+5. [morgan (^1.9.0)](https://www.npmjs.com/package/morgan)
+6. [Nodemon (^1.17.5)](https://www.npmjs.com/package/nodemon)
 
 
 Use

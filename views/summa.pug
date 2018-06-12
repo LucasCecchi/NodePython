@@ -1,0 +1,180 @@
+extends layout
+
+block customHead
+    
+block content
+  //- ============================================
+  //- ============================================
+  //- Sidebar
+  //- ============================================
+  //- ============================================
+  div(class='column sidenav')
+    h3(align='center')= classifier.toUpperCase()
+    hr
+    ul(class='ToC')
+      li
+        a(href="#about") About
+      li
+        a(href="#onlineResource") Online Resource
+      li
+        a(href="#api") API
+      li(class='subToC')
+        a(href="#api-python") Python
+      li(class='subToC')
+        a(href="#api-r") R
+      li
+        a(href="#tutorial") Tutorial
+      li
+        a(href="#references") References
+    script.
+      $(".ToC li").click(function(){
+        $(".ToC li.active").removeClass("active");
+        $(this).addClass("active");
+        location.hash = $(this).attr('id');
+      });
+        
+  //- ============================================
+  //- ============================================
+  //- Maintext
+  //- ============================================
+  //- ============================================
+  div(class='mainText' id='about')
+    div
+      h3 About
+      hr
+      p The Strategy for Unsupervised Multiple Method Aggregation, or #{ classifier.toUpperCase() } for short, is an ensemble method for binary classification.  The method aggregates rank predictions from an ensemble of base classifiers by a weighted sum over method predictions.  The weights are inferred from unlabeled data, and under a mild assumption of condtionally independent base classifiers, have been proved to be proportional to the area under the receiver operator characteristic (auROC).  In addition, #{ classifier.toUpperCase() } provides a strategy to convert these weights to each base classifier's true auROC.  #{ classifier.toUpperCase() } provides a useful strategy for developing ensemble classifiers when labeled data are not readily available.
+      
+    //- ============================================
+    //- ============================================
+    //- User Guide
+    //- ============================================
+    //- ============================================      
+      //- ================================================
+      //- ================================================
+      //- online resource
+      //- ================================================
+      //- ================================================
+    div(id='onlineResource' class='section')
+      h3 Online resource
+      hr
+      p The  #[a(href='/classification/binary/unsupervised/rank/weighted/'+classifier+'/apply') online resource] provides an user interface to apply the #{ classifier.toUpperCase() } algorithm to data.  Here, data can be submitted as a tab delimited text file (.tsv, or .txt).  The uploaded data are analyzed and the results can be visualized in the browser or downloaded for further investigation.  Details and implementation can be found #[a(href='/classification/binary/unsupervised/rank/weighted/'+classifier+'/apply') here].
+
+      //- ================================================
+      //- ================================================
+      //- API
+      //- ================================================
+      //- ================================================
+    div(id='api' class='section')
+      h3 API
+      hr
+      p Our ensemble learning package can be accessed through our web API.  The #{ classifier.toUpperCase() } ensemble method is accessible by POST request to,
+      pre(class='codeBlock')
+        .
+          http://learn-ensemble.org/classification/binary/unsupervised/rank/#{ classifier }
+      p The body of the request must be of the JSON format as shown below, 
+      pre(class='codeBlock') 
+        .
+          { 
+            data : {
+              Name 1 : [r1, r2, ...],
+              Name 2 : [r1, r2, ...],
+              ...,
+              Name M : [r1, r2, ...]
+            },
+          }
+      
+      p where #[code(class='codeInline') Name i] keys represent custom names of each base classifier.  The API is language agnostic, however we include two examples using #[a(href="#api-python") Python] and the #[a(href='#api-r') R] programming language.
+      
+      //- ================================================
+      //- ================================================
+      //- Python
+      //- ================================================
+      //- ================================================
+    div(id='api-python' class='section')
+      h3 Python
+      hr
+      p POST request in Python are made simple with the #[code(class='codeInline') requests] package, which is readily available on #[a(href="https://pypi.python.org/pypi/requests" target="_blank") PyPI].
+      pre(class='codeBlock')
+        .
+          >>> pip install requests
+      p The requisite JSON data format can be prepared from a Python dictionary. The dictionary should be formatted as specified with the noteable exception that each method's rank predictions must be stored in a Python list.  The request package will automatically encode the data dictionary into a suitable JSON object.
+          
+      p Here's what the Python code looks like,
+      
+      pre(class='codeBlock')
+        .
+          >>> import requests as req
+          <span style="opacity:0.5"><em># data is a predifined python dictionary.
+          # Simulate data with the simulation API</em></span>
+          >>> baseUrl = 'http://learn-ensemble.org/api'
+          >>> t = req.post(baseUrl + '/simulate/classification/binary/rank',
+                    json={'M':10, 'N':1000, 'prevalence':0.3})
+
+          <span style="opacity:0.5"><em># translate the json in the response body to a python dictionary</em></span>
+          >>> data = {'data':t.json()['data']}
+          
+          <span style="opacity:0.5"><em># submit data to #{ classifier.toUpperCase() } api for analysis</em></span>
+          >>> r = req.post(baseUrl + '/classification/binary/unsupervised/#{ classifier }',
+                        json=data)
+          <span style="opacity:0.5"><em># check the post request status code, should be 200</em></span>
+          >>> r.status_code
+          200
+          >>> results = r.json()
+          >>> results.keys()
+          dict_keys(['scores', 'inferredWeights', 'inferredLabels',
+                    'inferredPerformance', 'performanceMetric', 'cov-msg',
+                    'tensor-msg', 'names'])
+      p The #[code(class='codeInline') results] variable is a python dictionary containing #[code(class='codeInline') results.scores] the #{ classifier.toUpperCase() } derived sample scores, #[code(class='codeInline') results.inferredWeights] the rank ordered inferred #{ classifier.toUpperCase() } weights, and more.
+        
+      //- ================================================
+      //- ================================================
+      //- R
+      //- ================================================
+      //- ================================================
+    div(id='api-r' class='section')
+      h3 R
+      hr
+      p The #{ classifier.toUpperCase() } web API can be applied to data using the R programming language.  To use the web API you will need to submit a POST request to the server, and to read JSON data from the body of http responses.  HTTP requests can be made and JSON data parsed easily with the #[code(class='codeInline') httr] and #[code(class='codeInline') jsonlite] packages, respectively.  An example using these tools is highlighted below.
+      pre(class='codeBlock')
+        .
+          > library(httr)
+          > library(jsonlite)
+          
+          > parameters <- list(M=15, N=1500, prevalence=0.4)
+          > baseUrl <- 'http://learn-ensemble.org/api/'
+          > sim <- POST(url=paste(baseUrl,'simulate/classification/binary/rank', sep=''), 
+                      body=parameters, encode='json')
+          
+          > sim_data <- fromJSON(content(sim, as='text'))
+          
+          > unlabeled_data <- list(data=sim_data$data)
+          > r <- POST(url=paste(baseUrl, 'classification/binary/unsupervised/#{ classifier }', sep=''),
+                    body=unlabeled_data, encode='json')
+          > results <- fromJSON(content(r, as='text'))
+      
+    //- ============================================
+    //- ============================================
+    //- Tutorial
+    //- ============================================
+    //- ============================================        
+    div(id='tutorial')
+      h3 Tutorial
+      hr
+      p To understand how #{ classifier.toUpperCase() } performance changes with the number of samples, methods, and prevalence checkout the #[a(href='/classification/binary/unsupervised/rank/weighted/'+classifier+'/example') interactive example].  On this page you will be able to simulate toy data with unique parameterization, produce plots describing #{ classifier.toUpperCase() }s performance, and tips to how best interpret the results.
+    //- ============================================
+    //- ============================================
+    //- References
+    //- ============================================
+    //- ============================================        
+    div(id='references')
+      h3 References
+      hr
+      p To learn about the theory behind the SUMMA ensemble methodology, please refer to #[a(href='https://arxiv.org/abs/1802.04684') Ahsen, Vogel and Stolovitzky (2018)] which can be cited by:
+      pre(class='codeBlock')
+        .
+          @article{2017ahsen_vogel_stolovitzky,
+            authors = {Ahsen, Mehmet Eren and Vogel, Robert and Stolovitzky, Gustavo},
+            title = {Unsupervised Evaluation and Weighted Aggregation of Ranked Predictions},
+            journal = {arXiv},
+            year = {2018}
+          }
